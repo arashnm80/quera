@@ -16,19 +16,19 @@ for i in range(0, len(c)):
     c[i] = int(c[i])
 
 boxes = []
+count = 0
 
 for i in range(n):
-    if c[i] <= v and a[i] > 1 and a[i] % k == 1:
-        boxes.append(i)
+    if c[i] <= v and a[i] >= k + 1 and a[i] % (k + 1) == 1:
+        boxes.append(c[i])
 
 boxes.sort()
-answer = 0
 
-for i in boxes:
-    v = v - i
-    if v > 0:
-        answer = answer + 1
+for i in range(len(boxes)):
+    if v >= boxes[i]:
+        v = v - boxes[i]
+        count = count + 1
     else:
         break
 
-print(answer)
+print(count)
